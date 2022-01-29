@@ -30,6 +30,16 @@
             <Offset>D28</Offset>
           </Offsets>
         </CheatEntry>
+        <CheatEntry>
+          <ID>17</ID>
+          <Description>"Score"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>"game.exe"+014743F8</Address>
+          <Offsets>
+            <Offset>E8</Offset>
+          </Offsets>
+        </CheatEntry>
       </CheatEntries>
     </CheatEntry>
     <CheatEntry>
@@ -44,7 +54,7 @@
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
 
-aobscanmodule(ADDR_INVULNERABLE,game.exe,F3 0F 11 41 08 83 49 18 01 C3 0F) // should be unique
+aobscanmodule(ADDR_INVULNERABLE,game.exe+6F2C80,F3 0F 11 41 08) // should be unique
 alloc(newmem,$1000,ADDR_INVULNERABLE)
 
 label(code)
