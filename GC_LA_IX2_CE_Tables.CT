@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="42">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"Pointers"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>10</ID>
+          <Description>"HP"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>"game.exe"+01896630</Address>
+          <Offsets>
+            <Offset>30</Offset>
+            <Offset>28</Offset>
+            <Offset>168</Offset>
+            <Offset>2C0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"Scripts"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>14</ID>
+          <Description>"Invulnerable"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(ADDR_INVULNERABLE,game.exe,F3 0F 11 41 08 83 49 18 01 C3 0F) // should be unique
+alloc(newmem,$1000,ADDR_INVULNERABLE)
+
+label(code)
+label(skip_damage)
+label(return)
+
+newmem:
+  push r12
+  push r14
+
+  // Get address of Player's HP
+  mov r12, ["game.exe"+01896630]
+  mov r12, [r12+2C0]
+  mov r12, [r12+168]
+  mov r12, [r12+28]
+  lea r12, [r12+30]
+
+  // Compare current address
+  lea  r14, [rcx+08]
+  cmp r12, r14
+  je skip_damage
+
+code:
+  movss [rcx+08],xmm0
+
+skip_damage:
+  pop r14
+  pop r12
+  jmp return
+
+ADDR_INVULNERABLE:
+  jmp newmem
+return:
+
+registersymbol(ADDR_INVULNERABLE)
+
+[DISABLE]
+
+ADDR_INVULNERABLE:
+  db F3 0F 11 41 08
+
+unregistersymbol(ADDR_INVULNERABLE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+6F2C92
+
+game.exe+6F2C7B: CC              - int 3 
+game.exe+6F2C7C: CC              - int 3 
+game.exe+6F2C7D: CC              - int 3 
+game.exe+6F2C7E: CC              - int 3 
+game.exe+6F2C7F: CC              - int 3 
+game.exe+6F2C80: F3 0F 10 41 08  - movss xmm0,[rcx+08]
+game.exe+6F2C85: F3 0F 10 0A     - movss xmm1,[rdx]
+game.exe+6F2C89: 0F 2F C1        - comiss xmm0,xmm1
+game.exe+6F2C8C: 76 0E           - jna game.exe+6F2C9C
+game.exe+6F2C8E: F3 0F 5C C1     - subss xmm0,xmm1
+// ---------- INJECTING HERE ----------
+game.exe+6F2C92: F3 0F 11 41 08  - movss [rcx+08],xmm0
+// ---------- DONE INJECTING  ----------
+game.exe+6F2C97: 83 49 18 01     - or dword ptr [rcx+18],01
+game.exe+6F2C9B: C3              - ret 
+game.exe+6F2C9C: 0F 57 C0        - xorps xmm0,xmm0
+game.exe+6F2C9F: F3 0F 11 41 08  - movss [rcx+08],xmm0
+game.exe+6F2CA4: 83 49 18 01     - or dword ptr [rcx+18],01
+game.exe+6F2CA8: C3              - ret 
+game.exe+6F2CA9: CC              - int 3 
+game.exe+6F2CAA: CC              - int 3 
+game.exe+6F2CAB: CC              - int 3 
+game.exe+6F2CAC: CC              - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
