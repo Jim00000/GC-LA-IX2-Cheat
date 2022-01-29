@@ -20,6 +20,16 @@
             <Offset>2C0</Offset>
           </Offsets>
         </CheatEntry>
+        <CheatEntry>
+          <ID>16</ID>
+          <Description>"Ability Point"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"game.exe"+013E0AD8</Address>
+          <Offsets>
+            <Offset>D28</Offset>
+          </Offsets>
+        </CheatEntry>
       </CheatEntries>
     </CheatEntry>
     <CheatEntry>
