@@ -2,57 +2,62 @@
 <CheatTable CheatEngineTableVersion="42">
   <CheatEntries>
     <CheatEntry>
-      <ID>12</ID>
-      <Description>"Pointers"</Description>
-      <Options moManualExpandCollapse="1"/>
+      <ID>18</ID>
+      <Description>"Gunvolt Chronicles: Luminous Avenger iX 2 Ver 1.1.2 Cheat"</Description>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
-          <ID>10</ID>
-          <Description>"HP"</Description>
-          <ShowAsSigned>0</ShowAsSigned>
-          <VariableType>Float</VariableType>
-          <Address>"game.exe"+01896630</Address>
-          <Offsets>
-            <Offset>30</Offset>
-            <Offset>28</Offset>
-            <Offset>168</Offset>
-            <Offset>2C0</Offset>
-          </Offsets>
+          <ID>12</ID>
+          <Description>"Pointers"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>10</ID>
+              <Description>"HP"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"game.exe"+01896630</Address>
+              <Offsets>
+                <Offset>30</Offset>
+                <Offset>28</Offset>
+                <Offset>168</Offset>
+                <Offset>2C0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>16</ID>
+              <Description>"Ability Point"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"game.exe"+013E0AD8</Address>
+              <Offsets>
+                <Offset>D28</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>17</ID>
+              <Description>"Score"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"game.exe"+014743F8</Address>
+              <Offsets>
+                <Offset>E8</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
         </CheatEntry>
         <CheatEntry>
-          <ID>16</ID>
-          <Description>"Ability Point"</Description>
-          <ShowAsSigned>0</ShowAsSigned>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"game.exe"+013E0AD8</Address>
-          <Offsets>
-            <Offset>D28</Offset>
-          </Offsets>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>17</ID>
-          <Description>"Score"</Description>
-          <ShowAsSigned>0</ShowAsSigned>
-          <VariableType>Float</VariableType>
-          <Address>"game.exe"+014743F8</Address>
-          <Offsets>
-            <Offset>E8</Offset>
-          </Offsets>
-        </CheatEntry>
-      </CheatEntries>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>13</ID>
-      <Description>"Scripts"</Description>
-      <Options moManualExpandCollapse="1"/>
-      <GroupHeader>1</GroupHeader>
-      <CheatEntries>
-        <CheatEntry>
-          <ID>14</ID>
-          <Description>"Invulnerable"</Description>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>[ENABLE]
+          <ID>13</ID>
+          <Description>"Scripts"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>14</ID>
+              <Description>"Invulnerable"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
 
 aobscanmodule(ADDR_INVULNERABLE,game.exe+6F2C80,F3 0F 11 41 08) // should be unique
 alloc(newmem,$1000,ADDR_INVULNERABLE)
@@ -127,12 +132,12 @@ game.exe+6F2CAB: CC              - int 3
 game.exe+6F2CAC: CC              - int 3 
 }
 </AssemblerScript>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>15</ID>
-          <Description>"One Hit Kill"</Description>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>[ENABLE]
+            </CheatEntry>
+            <CheatEntry>
+              <ID>15</ID>
+              <Description>"One Hit Kill"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
 
 aobscanmodule(ADDR_ONE_HIT_KILL,game.exe,83 49 18 01 C3 0F) // should be unique
 alloc(newmem,$1000,ADDR_ONE_HIT_KILL)
@@ -212,6 +217,8 @@ game.exe+6F2CAC: CC              - int 3
 game.exe+6F2CAD: CC              - int 3 
 }
 </AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
