@@ -2,14 +2,69 @@
 <CheatTable CheatEngineTableVersion="42">
   <CheatEntries>
     <CheatEntry>
-      <ID>18</ID>
-      <Description>"Gunvolt Chronicles: Luminous Avenger iX 2 Ver 1.1.2 Cheat"</Description>
-      <GroupHeader>1</GroupHeader>
+      <ID>19</ID>
+      <Description>"Gunvolt Chronicles: Luminous Avenger iX 2 Ver 1.1.2  (Click To Enable Cheat) by Jim00000"</Description>
+      <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$lua}
+[ENABLE]
+
+function InitAOBScanModule ()
+    local script = [[
+        aobscanmodule(ADDR_INVULNERABLE,game.exe,F3 0F 11 41 08 83 49 18 01 C3 0F)
+        registersymbol(ADDR_INVULNERABLE)
+    ]]
+
+    if not autoAssemble(script) then
+        print("Fail to scan and locate ADDR_INVULNERABLE")
+    end
+
+    local script = [[
+        aobscanmodule(ADDR_ONE_HIT_KILL,game.exe,83 49 18 01 C3 0F)
+        registersymbol(ADDR_ONE_HIT_KILL)
+    ]]
+
+    if not autoAssemble(script) then
+        print("Fail to scan and locate ADDR_INVULNERABLE")
+    end
+
+    local script = [[
+        aobscanmodule(ADDR_INFINITE_SP,game.exe,F3 0F 10 0A 0F 2F C1)
+        registersymbol(ADDR_INFINITE_SP)
+    ]]
+
+    if not autoAssemble(script) then
+        print("Fail to scan and locate ADDR_INFINITE_SP")
+    end
+
+end
+
+if getCEVersion() &lt; 7.4 then
+    MessageDialog("This table only supports Cheat Engine 7.4 or above", mtWarning, mbClose)
+else
+    InitAOBScanModule()
+end
+
+[DISABLE]
+
+function FreeAOBScanModule ()
+    local script = [[
+        unregistersymbol(ADDR_INVULNERABLE)
+        unregistersymbol(ADDR_ONE_HIT_KILL)
+        unregistersymbol(ADDR_INFINITE_SP)
+    ]]
+
+    if not autoAssemble(script) then
+        print("Fail to free symbols")
+    end
+end
+
+FreeAOBScanModule()
+</AssemblerScript>
       <CheatEntries>
         <CheatEntry>
           <ID>12</ID>
           <Description>"Pointers"</Description>
-          <Options moManualExpandCollapse="1"/>
           <GroupHeader>1</GroupHeader>
           <CheatEntries>
             <CheatEntry>
@@ -23,6 +78,90 @@
                 <Offset>28</Offset>
                 <Offset>168</Offset>
                 <Offset>2C0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>20</ID>
+              <Description>"SP (ANCHOR NEXUS)"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"game.exe"+014743F8</Address>
+              <Offsets>
+                <Offset>78</Offset>
+                <Offset>68</Offset>
+                <Offset>70</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>28</ID>
+              <Description>"SP (WHIRLING CHOPPER)"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"game.exe"+014743F8</Address>
+              <Offsets>
+                <Offset>A0</Offset>
+                <Offset>68</Offset>
+                <Offset>70</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>27</ID>
+              <Description>"SP (DOOMSDAY CHARGE)"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"game.exe"+014743F8</Address>
+              <Offsets>
+                <Offset>C8</Offset>
+                <Offset>68</Offset>
+                <Offset>70</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26</ID>
+              <Description>"SP (CRYO-FLASH)"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"game.exe"+014743F8</Address>
+              <Offsets>
+                <Offset>F0</Offset>
+                <Offset>68</Offset>
+                <Offset>70</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>23</ID>
+              <Description>"SP (GATLING BLITZ)"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"game.exe"+014743F8</Address>
+              <Offsets>
+                <Offset>118</Offset>
+                <Offset>68</Offset>
+                <Offset>70</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>25</ID>
+              <Description>"SP (ROLLING RIPPER)"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"game.exe"+014743F8</Address>
+              <Offsets>
+                <Offset>140</Offset>
+                <Offset>68</Offset>
+                <Offset>70</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>24</ID>
+              <Description>"SP (OPTIC BARRIER)"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"game.exe"+014743F8</Address>
+              <Offsets>
+                <Offset>168</Offset>
+                <Offset>68</Offset>
+                <Offset>70</Offset>
               </Offsets>
             </CheatEntry>
             <CheatEntry>
@@ -50,7 +189,7 @@
         <CheatEntry>
           <ID>13</ID>
           <Description>"Scripts"</Description>
-          <Options moManualExpandCollapse="1"/>
+          <Options moDeactivateChildrenAsWell="1"/>
           <GroupHeader>1</GroupHeader>
           <CheatEntries>
             <CheatEntry>
@@ -59,8 +198,7 @@
               <VariableType>Auto Assembler Script</VariableType>
               <AssemblerScript>[ENABLE]
 
-aobscanmodule(ADDR_INVULNERABLE,game.exe+6F2C80,F3 0F 11 41 08) // should be unique
-alloc(newmem,$1000,ADDR_INVULNERABLE)
+alloc(newmem,$1000, ADDR_INVULNERABLE)
 
 label(code)
 label(skip_damage)
@@ -94,14 +232,11 @@ ADDR_INVULNERABLE:
   jmp newmem
 return:
 
-registersymbol(ADDR_INVULNERABLE)
-
 [DISABLE]
 
 ADDR_INVULNERABLE:
   db F3 0F 11 41 08
 
-unregistersymbol(ADDR_INVULNERABLE)
 dealloc(newmem)
 
 {
@@ -139,7 +274,6 @@ game.exe+6F2CAC: CC              - int 3
               <VariableType>Auto Assembler Script</VariableType>
               <AssemblerScript>[ENABLE]
 
-aobscanmodule(ADDR_ONE_HIT_KILL,game.exe,83 49 18 01 C3 0F) // should be unique
 alloc(newmem,$1000,ADDR_ONE_HIT_KILL)
 
 label(code)
@@ -148,7 +282,39 @@ label(skip_damage)
 
 newmem:
   push r12
+  push r13
   push r14
+
+  // Get comparator
+  lea r14, [rcx+08]
+
+  // Get address of Player's SP (base)
+  mov r12, ["game.exe"+014743F8]
+  mov r12, [r12+70]
+  mov r13, [r12+68]
+
+  // Bypass various special skills if possible
+  lea r12, [r13+78]
+  cmp r12, r14
+  je skip_damage
+  lea r12, [r13+A0]
+  cmp r12, r14
+  je skip_damage
+  lea r12, [r13+C8]
+  cmp r12, r14
+  je skip_damage
+  lea r12, [r13+F0]
+  cmp r12, r14
+  je skip_damage
+  lea r12, [r13+118]
+  cmp r12, r14
+  je skip_damage
+  lea r12, [r13+140]
+  cmp r12, r14
+  je skip_damage
+  lea r12, [r13+168]
+  cmp r12, r14
+  je skip_damage
 
   // Get address of Player's HP
   mov r12, ["game.exe"+01896630]
@@ -158,7 +324,6 @@ newmem:
   lea r12, [r12+30]
 
   // Compare and identify whether this is player
-  lea r14, [rcx+08]
   cmp r12, r14
   je skip_damage
 
@@ -168,6 +333,7 @@ newmem:
 
 skip_damage:
   pop r14
+  pop r13
   pop r12
 
 code:
@@ -179,14 +345,11 @@ ADDR_ONE_HIT_KILL:
   jmp newmem
 return:
 
-registersymbol(ADDR_ONE_HIT_KILL)
-
 [DISABLE]
 
 ADDR_ONE_HIT_KILL:
   db 83 49 18 01 C3
 
-unregistersymbol(ADDR_ONE_HIT_KILL)
 dealloc(newmem)
 
 {
@@ -215,6 +378,110 @@ game.exe+6F2CAA: CC              - int 3
 game.exe+6F2CAB: CC              - int 3 
 game.exe+6F2CAC: CC              - int 3 
 game.exe+6F2CAD: CC              - int 3 
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>21</ID>
+              <Description>"Infinite SP"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+alloc(newmem,$1000,ADDR_INFINITE_SP)
+
+label(code)
+label(return)
+label(full_sp)
+
+newmem:
+  push r12
+  push r13
+  push r14
+
+  // Get comparator
+  lea r14, [rcx+08]
+
+  // Get address of Player's SP (base)
+  mov r12, ["game.exe"+014743F8]
+  mov r12, [r12+70]
+  mov r13, [r12+68]
+
+  // Bypass various special skills if possible
+  lea r12, [r13+78]
+  cmp r12, r14
+  je full_sp
+  lea r12, [r13+A0]
+  cmp r12, r14
+  je full_sp
+  lea r12, [r13+C8]
+  cmp r12, r14
+  je full_sp
+  lea r12, [r13+F0]
+  cmp r12, r14
+  je full_sp
+  lea r12, [r13+118]
+  cmp r12, r14
+  je full_sp
+  lea r12, [r13+140]
+  cmp r12, r14
+  je full_sp
+  lea r12, [r13+168]
+  cmp r12, r14
+  je full_sp
+
+code:
+  pop r14
+  pop r13
+  pop r12
+
+  movss xmm1,[rdx]
+  comiss xmm0,xmm1
+  jmp return
+
+full_sp:
+  mov r13, 200
+  // Fill xmm0 as maximum value of SP
+  cvtsi2ss xmm0, r13
+  jmp code
+
+ADDR_INFINITE_SP:
+  jmp newmem
+  nop 2
+return:
+
+[DISABLE]
+
+ADDR_INFINITE_SP:
+  db F3 0F 10 0A 0F 2F C1
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+6F2C85
+
+game.exe+6F2C77: CC              - int 3 
+game.exe+6F2C78: CC              - int 3 
+game.exe+6F2C79: CC              - int 3 
+game.exe+6F2C7A: CC              - int 3 
+game.exe+6F2C7B: CC              - int 3 
+game.exe+6F2C7C: CC              - int 3 
+game.exe+6F2C7D: CC              - int 3 
+game.exe+6F2C7E: CC              - int 3 
+game.exe+6F2C7F: CC              - int 3 
+game.exe+6F2C80: F3 0F 10 41 08  - movss xmm0,[rcx+08]
+// ---------- INJECTING HERE ----------
+game.exe+6F2C85: F3 0F 10 0A     - movss xmm1,[rdx]
+// ---------- DONE INJECTING  ----------
+game.exe+6F2C89: 0F 2F C1        - comiss xmm0,xmm1
+game.exe+6F2C8C: 76 0E           - jna game.exe+6F2C9C
+ADDR_INFINITE_SP: F3 0F 5C C1     - subss xmm0,xmm1
+ADDR_INVULNERABLE: F3 0F 11 41 08  - movss [rcx+08],xmm0
+ADDR_ONE_HIT_KILL: 83 49 18 01     - or dword ptr [rcx+18],01
+game.exe+6F2C9B: C3              - ret 
+game.exe+6F2C9C: 0F 57 C0        - xorps xmm0,xmm0
+game.exe+6F2C9F: F3 0F 11 41 08  - movss [rcx+08],xmm0
+game.exe+6F2CA4: 83 49 18 01     - or dword ptr [rcx+18],01
+game.exe+6F2CA8: C3              - ret 
 }
 </AssemblerScript>
             </CheatEntry>
