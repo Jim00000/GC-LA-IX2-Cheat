@@ -485,6 +485,67 @@ game.exe+6F2CA8: C3              - ret
 }
 </AssemblerScript>
             </CheatEntry>
+            <CheatEntry>
+              <ID>33</ID>
+              <Description>"Untouchable"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+aobscanmodule(ADDR_UNTOUCHABLE,game.exe,21 81 A0 01 00 00 80 7E) // should be unique
+alloc(newmem,$1000,ADDR_UNTOUCHABLE)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+000001A0], FFFFFFFF
+code:
+  //and [rcx+000001A0],eax
+  jmp return
+
+ADDR_UNTOUCHABLE:
+  jmp newmem
+  nop
+return:
+registersymbol(ADDR_UNTOUCHABLE)
+
+[DISABLE]
+
+ADDR_UNTOUCHABLE:
+  db 21 81 A0 01 00 00
+
+unregistersymbol(ADDR_UNTOUCHABLE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+8CE519
+
+game.exe+8CE4F3: E8 70 D3 4E 00           - call game.exe+DBB868
+game.exe+8CE4F8: 48 8B 8F A8 04 00 00     - mov rcx,[rdi+000004A8]
+game.exe+8CE4FF: 48 85 C9                 - test rcx,rcx
+game.exe+8CE502: 74 1B                    - je game.exe+8CE51F
+game.exe+8CE504: 8B 05 C2 63 00 01        - mov eax,[game.exe+18D48CC]
+game.exe+8CE50A: 40 84 ED                 - test bpl,bpl
+game.exe+8CE50D: 74 08                    - je game.exe+8CE517
+game.exe+8CE50F: 09 81 A0 01 00 00        - or [rcx+000001A0],eax
+game.exe+8CE515: EB 08                    - jmp game.exe+8CE51F
+game.exe+8CE517: F7 D0                    - not eax
+// ---------- INJECTING HERE ----------
+game.exe+8CE519: 21 81 A0 01 00 00        - and [rcx+000001A0],eax
+// ---------- DONE INJECTING  ----------
+game.exe+8CE51F: 80 7E 28 00              - cmp byte ptr [rsi+28],00
+game.exe+8CE523: 75 0C                    - jne game.exe+8CE531
+game.exe+8CE525: 45 89 67 30              - mov [r15+30],r12d
+game.exe+8CE529: 41 C7 46 28 0B 00 00 00  - mov [r14+28],0000000B
+game.exe+8CE531: 40 32 FF                 - xor dil,dil
+game.exe+8CE534: 48 85 F6                 - test rsi,rsi
+game.exe+8CE537: 74 09                    - je game.exe+8CE542
+game.exe+8CE539: 48 8B CE                 - mov rcx,rsi
+game.exe+8CE53C: E8 6F 12 8D FF           - call game.exe+19F7B0
+game.exe+8CE541: 90                       - nop 
+}
+</AssemblerScript>
+            </CheatEntry>
           </CheatEntries>
         </CheatEntry>
       </CheatEntries>
