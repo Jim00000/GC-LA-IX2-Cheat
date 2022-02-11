@@ -195,6 +195,16 @@ FreeAOBScanModule()
                 <Offset>E8</Offset>
               </Offsets>
             </CheatEntry>
+            <CheatEntry>
+              <ID>40</ID>
+              <Description>"Power Point"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"game.exe"+014743F8</Address>
+              <Offsets>
+                <Offset>F8</Offset>
+              </Offsets>
+            </CheatEntry>
           </CheatEntries>
         </CheatEntry>
         <CheatEntry>
@@ -555,6 +565,74 @@ game.exe+8CE541: 90                       - nop
 }
 </AssemblerScript>
             </CheatEntry>
+            <CheatEntry>
+              <ID>39</ID>
+              <Description>"Power Point Fixed to 99999"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+aobscanmodule(ADDR_POWER_POINTS,game.exe,49 8B 80 A0 00 00 00 F3 48 0F 2C 48 18) // should be unique
+alloc(newmem,$1000,ADDR_POWER_POINTS)
+
+label(code)
+label(return)
+
+newmem:
+code:
+  mov rax,[r8+000000A0]
+
+  // mov [rax+18], (float)33333
+  push r14
+  mov r14, #99999
+  cvtsi2ss xmm0, r14
+  movss [rax+18], xmm0
+  pop r14
+
+  jmp return
+
+ADDR_POWER_POINTS:
+  jmp newmem
+  nop 2
+return:
+registersymbol(ADDR_POWER_POINTS)
+
+[DISABLE]
+
+ADDR_POWER_POINTS:
+  db 49 8B 80 A0 00 00 00
+
+unregistersymbol(ADDR_POWER_POINTS)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+817691
+
+game.exe+817663: 48 8B B8 E0 01 00 00  - mov rdi,[rax+000001E0]
+game.exe+81766A: 48 85 FF              - test rdi,rdi
+game.exe+81766D: 74 0C                 - je game.exe+81767B
+game.exe+81766F: 48 8D 4F 08           - lea rcx,[rdi+08]
+game.exe+817673: FF 41 20              - inc [rcx+20]
+game.exe+817676: E8 C5 82 98 FF        - call game.exe+19F940
+game.exe+81767B: 48 8B 8F 20 06 00 00  - mov rcx,[rdi+00000620]
+game.exe+817682: E8 79 50 9A FF        - call game.exe+1BC700
+game.exe+817687: 48 8B D0              - mov rdx,rax
+game.exe+81768A: 4C 8B 05 67 CD C5 00  - mov r8,[game.exe+14743F8]
+// ---------- INJECTING HERE ----------
+game.exe+817691: 49 8B 80 A0 00 00 00  - mov rax,[r8+000000A0]
+// ---------- DONE INJECTING  ----------
+game.exe+817698: F3 48 0F 2C 48 18     - cvttss2si rcx,[rax+18]
+game.exe+81769E: 89 8A 20 02 00 00     - mov [rdx+00000220],ecx
+game.exe+8176A4: 80 BE 20 05 00 00 00  - cmp byte ptr [rsi+00000520],00
+game.exe+8176AB: 0F 85 F8 00 00 00     - jne game.exe+8177A9
+game.exe+8176B1: 49 8B 80 88 00 00 00  - mov rax,[r8+00000088]
+game.exe+8176B8: 48 8B 48 28           - mov rcx,[rax+28]
+game.exe+8176BC: 48 85 C9              - test rcx,rcx
+game.exe+8176BF: 0F 84 E4 00 00 00     - je game.exe+8177A9
+game.exe+8176C5: 8B 41 5C              - mov eax,[rcx+5C]
+game.exe+8176C8: C1 E8 05              - shr eax,05
+}
+</AssemblerScript>
+            </CheatEntry>
           </CheatEntries>
         </CheatEntry>
       </CheatEntries>
@@ -564,7 +642,7 @@ game.exe+8CE541: 90                       - nop
   <Comments>Game         : Gunvolt Chronicles: Luminous Avenger iX 2 Ver 1.1.2
 Process Name : game.exe
 Author       : Jim00000
-Last Update  : 02.02.2022
+Last Update  : 02.12.2022
 CE Version   : 7.4
 [Cheat Table Contents]
 - Pointers
@@ -572,11 +650,13 @@ CE Version   : 7.4
   - SP (various types)
   - Ability Point (called EP in the game)
   - Score
+  - Power Point
 - Scripts
   - Infinite SP
   - Invulnerable
   - One Hit Kill
   - Untouchable
+  - Fix Power Points to 99999 (The charactor changes mode and an anime sing starts to play)
 [License]
 Cheat Engine Cheat Script for Gunvolt Chronicles: Luminous Avenger iX 2
 Copyright (C) 2022  Jim00000
