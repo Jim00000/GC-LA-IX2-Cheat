@@ -46,6 +46,14 @@ function InitAOBScanModule ()
         print("Fail to scan and locate ADDR_UNTOUCHABLE")
     end
 
+    local script = [[
+        aobscanmodule(ADDR_POWER_POINTS,game.exe,49 8B 80 A0 00 00 00 F3 48 0F 2C 48 18)
+        registersymbol(ADDR_POWER_POINTS)
+    ]]
+
+    if not autoAssemble(script) then
+        print("Fail to scan and locate ADDR_POWER_POINTS")
+    end
 end
 
 if getCEVersion() &lt; 7.4 then
@@ -63,6 +71,7 @@ function FreeAOBScanModule ()
         unregistersymbol(ADDR_ONE_HIT_KILL)
         unregistersymbol(ADDR_INFINITE_SP)
         unregistersymbol(ADDR_UNTOUCHABLE)
+        unregistersymbol(ADDR_POWER_POINTS)
     ]]
 
     if not autoAssemble(script) then
@@ -571,7 +580,6 @@ game.exe+8CE541: 90                       - nop
               <VariableType>Auto Assembler Script</VariableType>
               <AssemblerScript>[ENABLE]
 
-aobscanmodule(ADDR_POWER_POINTS,game.exe,49 8B 80 A0 00 00 00 F3 48 0F 2C 48 18) // should be unique
 alloc(newmem,$1000,ADDR_POWER_POINTS)
 
 label(code)
@@ -581,7 +589,7 @@ newmem:
 code:
   mov rax,[r8+000000A0]
 
-  // mov [rax+18], (float)33333
+  // mov [rax+18], (float)99999
   push r14
   mov r14, #99999
   cvtsi2ss xmm0, r14
@@ -594,14 +602,12 @@ ADDR_POWER_POINTS:
   jmp newmem
   nop 2
 return:
-registersymbol(ADDR_POWER_POINTS)
 
 [DISABLE]
 
 ADDR_POWER_POINTS:
   db 49 8B 80 A0 00 00 00
 
-unregistersymbol(ADDR_POWER_POINTS)
 dealloc(newmem)
 
 {
