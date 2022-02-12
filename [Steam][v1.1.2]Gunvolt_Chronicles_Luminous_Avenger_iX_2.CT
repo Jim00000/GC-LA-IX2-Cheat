@@ -687,13 +687,6 @@ game.exe+8176C8: C1 E8 05              - shr eax,05
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
-    <CheatEntry>
-      <ID>50</ID>
-      <Description>"No description"</Description>
-      <ShowAsSigned>0</ShowAsSigned>
-      <VariableType>Float</VariableType>
-      <Address>000000000B2702E8</Address>
-    </CheatEntry>
   </CheatEntries>
   <UserdefinedSymbols/>
   <Comments>Game         : Gunvolt Chronicles: Luminous Avenger iX 2 Ver 1.1.2
