@@ -240,6 +240,16 @@ FreeAOBScanModule()
             </CheatEntry>
             <CheatEntry>
               <ID>17</ID>
+              <Description>"Mission's Elapsed Time"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"game.exe"+014743F8</Address>
+              <Offsets>
+                <Offset>30</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>55</ID>
               <Description>"Score"</Description>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
@@ -703,13 +713,13 @@ CE Version   : 7.4
   - Ability Point (called EP in the game)
   - Score
   - Power Point
+  - Mission Timer
 - Scripts
   - Infinite SP
   - Invulnerable
   - One Hit Kill
   - Untouchable
   - Fix Power Points to 99999 (The charactor changes mode and an anime sing starts to play)
-  - Movement speedup x2.5 for Player
 [License]
 Cheat Engine Cheat Script for Gunvolt Chronicles: Luminous Avenger iX 2
 Copyright (C) 2022  Jim00000
