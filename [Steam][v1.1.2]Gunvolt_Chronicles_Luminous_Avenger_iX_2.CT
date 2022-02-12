@@ -771,6 +771,7 @@ CE Version   : 7.4
 [Cheat Table Contents]
 - Pointers
   - (X,Y) position inside the game scene
+  - (X,Y) position of camera's frame
   - HP
   - SP (various types)
   - Ability Point (called EP in the game)
@@ -782,6 +783,7 @@ CE Version   : 7.4
   - One Hit Kill
   - Untouchable
   - Fix Power Points to 99999 (The charactor changes mode and an anime sing starts to play)
+  - Movement speedup x2.5 for Player
 [License]
 Cheat Engine Cheat Script for Gunvolt Chronicles: Luminous Avenger iX 2
 Copyright (C) 2022  Jim00000
