@@ -242,7 +242,7 @@ FreeAOBScanModule()
             </CheatEntry>
             <CheatEntry>
               <ID>16</ID>
-              <Description>"Ability Point"</Description>
+              <Description>"EC"</Description>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>"game.exe"+013E0AD8</Address>
@@ -642,7 +642,7 @@ game.exe+8CE541: 90                       - nop
             </CheatEntry>
             <CheatEntry>
               <ID>39</ID>
-              <Description>"Power Point Fixed to 99999"</Description>
+              <Description>"Power Point Fixed to 99999 (Enable overdrive)"</Description>
               <VariableType>Auto Assembler Script</VariableType>
               <AssemblerScript>[ENABLE]
 
@@ -722,7 +722,8 @@ CE Version   : 7.4
   - (X,Y) position of camera's frame
   - HP
   - SP (various types)
-  - Ability Point (called EP in the game)
+  - Air Dash Gauge
+  - EC
   - Score
   - Power Point
   - Mission Timer
@@ -731,7 +732,7 @@ CE Version   : 7.4
   - Invulnerable
   - One Hit Kill
   - Untouchable
-  - Fix Power Points to 99999 (The charactor changes mode and an anime sing starts to play)
+  - Fix Power Points to 99999 (Enable overdrive)
 [License]
 Cheat Engine Cheat Script for Gunvolt Chronicles: Luminous Avenger iX 2
 Copyright (C) 2022  Jim00000
