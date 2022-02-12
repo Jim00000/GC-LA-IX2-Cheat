@@ -88,6 +88,22 @@ FreeAOBScanModule()
           <GroupHeader>1</GroupHeader>
           <CheatEntries>
             <CheatEntry>
+              <ID>58</ID>
+              <Description>"Game Version"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>String</VariableType>
+              <Length>10</Length>
+              <Unicode>0</Unicode>
+              <CodePage>0</CodePage>
+              <ZeroTerminate>1</ZeroTerminate>
+              <Address>"game.exe"+014743F8</Address>
+              <Offsets>
+                <Offset>CF0</Offset>
+                <Offset>2A8</Offset>
+                <Offset>388</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
               <ID>51</ID>
               <Description>"MoveX Speed "</Description>
               <ShowAsSigned>0</ShowAsSigned>
@@ -718,6 +734,7 @@ Last Update  : 02.12.2022
 CE Version   : 7.4
 [Cheat Table Contents]
 - Pointers
+  - Game Version
   - (X,Y) position inside the game scene
   - (X,Y) position of camera's frame
   - HP
