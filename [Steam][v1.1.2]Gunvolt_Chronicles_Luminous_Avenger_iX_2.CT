@@ -229,6 +229,18 @@ FreeAOBScanModule()
               </Offsets>
             </CheatEntry>
             <CheatEntry>
+              <ID>57</ID>
+              <Description>"Air Dash Gauge"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"game.exe"+014743F8</Address>
+              <Offsets>
+                <Offset>40</Offset>
+                <Offset>68</Offset>
+                <Offset>70</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
               <ID>16</ID>
               <Description>"Ability Point"</Description>
               <ShowAsSigned>0</ShowAsSigned>
