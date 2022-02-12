@@ -54,6 +54,15 @@ function InitAOBScanModule ()
     if not autoAssemble(script) then
         print("Fail to scan and locate ADDR_POWER_POINTS")
     end
+
+    local script = [[
+        aobscanmodule(ADDR_MOVE_SPEEDUP,game.exe,F3 0F 59 C6 41 0F 2E D0)
+        registersymbol(ADDR_MOVE_SPEEDUP)
+    ]]
+
+    if not autoAssemble(script) then
+        print("Fail to scan and locate ADDR_POWER_POINTS")
+    end
 end
 
 if getCEVersion() &lt; 7.4 then
@@ -72,6 +81,7 @@ function FreeAOBScanModule ()
         unregistersymbol(ADDR_INFINITE_SP)
         unregistersymbol(ADDR_UNTOUCHABLE)
         unregistersymbol(ADDR_POWER_POINTS)
+        unregistersymbol(ADDR_MOVE_SPEEDUP)
     ]]
 
     if not autoAssemble(script) then
@@ -107,6 +117,28 @@ FreeAOBScanModule()
               <Offsets>
                 <Offset>27C</Offset>
                 <Offset>2D0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>47</ID>
+              <Description>"X Position (Screen)"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"game.exe"+01896630</Address>
+              <Offsets>
+                <Offset>268</Offset>
+                <Offset>2D8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>48</ID>
+              <Description>"Y Position (Screen)"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>"game.exe"+01896630</Address>
+              <Offsets>
+                <Offset>26C</Offset>
+                <Offset>2D8</Offset>
               </Offsets>
             </CheatEntry>
             <CheatEntry>
@@ -658,6 +690,70 @@ game.exe+8176BC: 48 85 C9              - test rcx,rcx
 game.exe+8176BF: 0F 84 E4 00 00 00     - je game.exe+8177A9
 game.exe+8176C5: 8B 41 5C              - mov eax,[rcx+5C]
 game.exe+8176C8: C1 E8 05              - shr eax,05
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>44</ID>
+              <Description>"Move Speed x2.5"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+alloc(newmem,$1000,ADDR_MOVE_SPEEDUP)
+
+label(code)
+label(return)
+
+newmem:
+  push r15
+  mov r15, (float)2.5
+  movd xmm15, r15
+  mulss xmm0, xmm15
+  pop r15
+
+code:
+  mulss xmm0,xmm6
+  ucomiss xmm2,xmm8
+  jmp return
+
+ADDR_MOVE_SPEEDUP:
+  jmp newmem
+  nop 3
+return:
+
+[DISABLE]
+
+ADDR_MOVE_SPEEDUP:
+  db F3 0F 59 C6 41 0F 2E D0
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+AC5C18
+
+game.exe+AC5BD9: 44 0F 29 4C 24 40           - movaps [rsp+40],xmm9
+game.exe+AC5BDF: F3 44 0F 10 0D 64 62 61 00  - movss xmm9,[game.exe+10DBE4C]
+game.exe+AC5BE8: 0F 1F 84 00 00 00 00 00     - nop dword ptr [rax+rax+00000000]
+game.exe+AC5BF0: 48 63 43 1C                 - movsxd  rax,dword ptr [rbx+1C]
+game.exe+AC5BF4: F3 0F 10 84 86 34 01 00 00  - movss xmm0,[rsi+rax*4+00000134]
+game.exe+AC5BFD: F3 0F 59 43 20              - mulss xmm0,[rbx+20]
+game.exe+AC5C02: 48 8B 4C C6 68              - mov rcx,[rsi+rax*8+68]
+game.exe+AC5C07: F3 0F 10 8C 86 F0 00 00 00  - movss xmm1,[rsi+rax*4+000000F0]
+game.exe+AC5C10: 0F 28 D1                    - movaps xmm2,xmm1
+game.exe+AC5C13: F3 0F 59 53 24              - mulss xmm2,[rbx+24]
+// ---------- INJECTING HERE ----------
+game.exe+AC5C18: F3 0F 59 C6                 - mulss xmm0,xmm6
+// ---------- DONE INJECTING  ----------
+game.exe+AC5C1C: 41 0F 2E D0                 - ucomiss xmm2,xmm8
+game.exe+AC5C20: F3 0F 58 01                 - addss xmm0,[rcx]
+game.exe+AC5C24: F3 0F 11 01                 - movss [rcx],xmm0
+game.exe+AC5C28: 7A 02                       - jp game.exe+AC5C2C
+game.exe+AC5C2A: 74 2B                       - je game.exe+AC5C57
+game.exe+AC5C2C: 48 63 43 1C                 - movsxd  rax,dword ptr [rbx+1C]
+game.exe+AC5C30: 0F 28 C2                    - movaps xmm0,xmm2
+game.exe+AC5C33: F3 0F 59 C7                 - mulss xmm0,xmm7
+game.exe+AC5C37: F3 0F 59 D6                 - mulss xmm2,xmm6
+game.exe+AC5C3B: 48 8B 4C C6 68              - mov rcx,[rsi+rax*8+68]
 }
 </AssemblerScript>
             </CheatEntry>
