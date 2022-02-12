@@ -61,7 +61,7 @@ function InitAOBScanModule ()
     ]]
 
     if not autoAssemble(script) then
-        print("Fail to scan and locate ADDR_POWER_POINTS")
+        print("Fail to scan and locate ADDR_MOVE_SPEEDUP")
     end
 end
 
