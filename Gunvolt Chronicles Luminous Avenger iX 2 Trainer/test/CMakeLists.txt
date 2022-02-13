@@ -1,0 +1,5 @@
+#add_subdirectory(test_imgui)
+#add_subdirectory(test_parse_vtable)
+#add_subdirectory(test_singleton)
+#add_subdirectory(test_gui_hook)
+add_subdirectory(test_gui_design)
