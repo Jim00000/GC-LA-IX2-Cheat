@@ -83,6 +83,26 @@ FreeAOBScanModule()
 </AssemblerScript>
       <CheatEntries>
         <CheatEntry>
+          <ID>60</ID>
+          <Description>"Pointers (D3D9)"</Description>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>59</ID>
+              <Description>"(D3D9) IDirect3DDevice9"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>"game.exe"+018B3040</Address>
+              <Offsets>
+                <Offset>0</Offset>
+                <Offset>248</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
           <ID>12</ID>
           <Description>"Pointers"</Description>
           <GroupHeader>1</GroupHeader>
@@ -730,9 +750,11 @@ game.exe+8176C8: C1 E8 05              - shr eax,05
   <Comments>Game         : Gunvolt Chronicles: Luminous Avenger iX 2 Ver 1.1.2
 Process Name : game.exe
 Author       : Jim00000
-Last Update  : 02.12.2022
+Last Update  : 02.19.2022
 CE Version   : 7.4
 [Cheat Table Contents]
+- Pointers (D3D9)
+  - IDirect3DDevice9
 - Pointers
   - Game Version
   - (X,Y) position inside the game scene
