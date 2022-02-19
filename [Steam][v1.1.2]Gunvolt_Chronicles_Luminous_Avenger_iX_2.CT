@@ -97,7 +97,7 @@ FreeAOBScanModule()
               <Address>"game.exe"+018B3040</Address>
               <Offsets>
                 <Offset>0</Offset>
-                <Offset>248</Offset>
+                <Offset>E8</Offset>
               </Offsets>
             </CheatEntry>
           </CheatEntries>
