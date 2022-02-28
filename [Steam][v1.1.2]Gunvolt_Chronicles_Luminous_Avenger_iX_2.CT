@@ -89,7 +89,7 @@ FreeAOBScanModule()
           <CheatEntries>
             <CheatEntry>
               <ID>59</ID>
-              <Description>"(D3D9) IDirect3DDevice9"</Description>
+              <Description>"(D3D9) IDirect3D"</Description>
               <ShowAsHex>1</ShowAsHex>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Array of byte</VariableType>
@@ -97,7 +97,25 @@ FreeAOBScanModule()
               <Address>"game.exe"+018B3040</Address>
               <Offsets>
                 <Offset>0</Offset>
-                <Offset>E8</Offset>
+                <Offset>18</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>61</ID>
+              <Description>"(D3D9) IDirect3DDevice9"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>"game.exe"+013838F0</Address>
+              <Offsets>
+                <Offset>0</Offset>
+                <Offset>538</Offset>
+                <Offset>D0</Offset>
+                <Offset>50</Offset>
+                <Offset>204</Offset>
+                <Offset>0</Offset>
               </Offsets>
             </CheatEntry>
           </CheatEntries>
