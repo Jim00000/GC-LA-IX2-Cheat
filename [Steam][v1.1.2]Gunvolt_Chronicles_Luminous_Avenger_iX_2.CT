@@ -134,11 +134,14 @@ FreeAOBScanModule()
               <Unicode>0</Unicode>
               <CodePage>0</CodePage>
               <ZeroTerminate>1</ZeroTerminate>
-              <Address>"game.exe"+014743F8</Address>
+              <Address>"game.exe"+0188F5E8</Address>
               <Offsets>
-                <Offset>CF0</Offset>
-                <Offset>2A8</Offset>
-                <Offset>388</Offset>
+                <Offset>860</Offset>
+                <Offset>D0</Offset>
+                <Offset>10</Offset>
+                <Offset>168</Offset>
+                <Offset>20</Offset>
+                <Offset>50</Offset>
               </Offsets>
             </CheatEntry>
             <CheatEntry>
