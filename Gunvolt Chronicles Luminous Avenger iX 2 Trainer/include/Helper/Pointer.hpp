@@ -8,6 +8,7 @@ namespace GCLAX2
     class Pointer
     {
         unsigned char* address;
+        bool valid_ = true;
 
     public:
         template <typename T>
@@ -24,12 +25,16 @@ namespace GCLAX2
         template <typename Type>
         Type to() const noexcept
         {
-            unsigned char* addr = (unsigned char*)this->address;
-            return reinterpret_cast<Type>(this->address);
+            if (this->valid_)
+                return reinterpret_cast<Type>(this->address);
+            else
+                return 0;
         }
 
-        const Pointer dereference() const;
+        const Pointer dereference() const noexcept;
 
         const Pointer offset(const std::ptrdiff_t delta) const noexcept;
+
+        const Pointer& invalid() noexcept;
     };
 }

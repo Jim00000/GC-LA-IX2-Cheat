@@ -19,10 +19,13 @@ GameVersion::GameVersion() noexcept
     ProcessInformation procInfo {};
     unsigned char* gameBaseAddr = procInfo.getProcessBaseAddress();
     const char* const gameVersion = Pointer{ gameBaseAddr }
-        .offset(0x014743F8).dereference()
-        .offset(0x388).dereference()
-        .offset(0x2A8).dereference()
-        .offset(0xCF0).to<const char*>();
+        .offset(0x0188F5E8).dereference()
+        .offset(0x50).dereference()
+        .offset(0x20).dereference()
+        .offset(0x168).dereference()
+        .offset(0x10).dereference()
+        .offset(0xD0).dereference()
+        .offset(0x860).to<const char*>();
 
     this->version_ = std::string(gameVersion);
     spdlog::debug("Game version : {}", this->version_);
@@ -33,6 +36,7 @@ void GameVersion::verify() const
     // We only support v1.1.2 right now !
     if (version_.compare("1.1.2") != 0)
     {
+        spdlog::critical("game version mismatch");
         throw VersionMismatchError {};
     }
 }

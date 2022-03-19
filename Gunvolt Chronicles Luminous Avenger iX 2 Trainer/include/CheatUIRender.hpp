@@ -6,9 +6,10 @@ namespace GCLAX2
 {
     class CheatUIRender : Singleton<CheatUIRender>
     {
-        bool fixedHP_;
+        bool fixedHP_ = false;
+        float* HP_ = nullptr;
     private:
-        CheatUIRender() noexcept = default;
+        CheatUIRender() noexcept;
 
     public:
         virtual ~CheatUIRender() noexcept;
